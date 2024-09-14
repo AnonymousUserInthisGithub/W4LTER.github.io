@@ -1,6 +1,8 @@
 <html><head><base href="https:/skanska.com/">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="email.js" defer></script>
 <title>W4LTER - Roblox Developer</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&display=swap');
@@ -663,7 +665,7 @@ nav {
                     <div class="terminal-content">
                         <p class="terminal-text">Initializing secure connection...</p>
                         <p class="terminal-text">Enter your credentials to establish contact:</p>
-                        <form class="contact-form hacker-form" action="https://formspree.io/f/myzgapbj" method="POST">
+                        <form id="contact-form" class="contact-form hacker-form">
                             <div class="form-group">
                                 <label for="name">Codename:</label>
                                 <input type="text" id="name" name="name" required>
