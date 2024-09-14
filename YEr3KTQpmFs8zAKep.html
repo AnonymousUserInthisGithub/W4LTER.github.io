@@ -1,0 +1,836 @@
+<html><head><base href="https:/skanska.com/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W4LTER - Roblox Developer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #00FFFF;
+    --secondary-color: #FF00FF;
+    --background-color: #0A0A0A;
+    --text-color: #FFFFFF;
+    --accent-color: #FF4500;
+    --nature-green: #4CAF50;
+    --nature-blue: #03A9F4;
+    --nature-brown: #795548;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: rotate(360deg);
+    box-shadow: 0 0 15px var(--primary-color);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    text-shadow: 0 0 10px var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title.glitch {
+    position: relative;
+    text-shadow: 0 0 10px #0F0;
+}
+
+.section-title.glitch::before,
+.section-title.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.section-title.glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.section-title.glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+    }
+    4.166666667% {
+        clip: rect(91px, 9999px, 43px, 0);
+    }
+    8.333333333% {
+        clip: rect(65px, 9999px, 59px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(36px, 9999px, 2px, 0);
+    }
+    4.166666667% {
+        clip: rect(25px, 9999px, 32px, 0);
+    }
+    8.333333333% {
+        clip: rect(54px, 9999px, 7px, 0);
+    }
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.skill-card {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid #0F0;
+    box-shadow: 0 0 10px #0F0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card:hover {
+    background-color: #0F0;
+    color: #000;
+}
+
+.skill-card-content {
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding: 20px;
+    height: 100%;
+}
+
+.nature-icon {
+    width: 60px;
+    height: 60px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover .nature-icon {
+    transform: scale(1.2);
+}
+
+.skill-card:nth-child(1) .nature-icon { color: var(--nature-green); }
+.skill-card:nth-child(2) .nature-icon { color: var(--nature-blue); }
+.skill-card:nth-child(3) .nature-icon { color: var(--accent-color); }
+.skill-card:nth-child(4) .nature-icon { color: var(--nature-brown); }
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-filters {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.project-card {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 1px solid #0F0;
+    box-shadow: 0 0 10px #0F0;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.project-content {
+    padding: 20px;
+}
+
+.project-title {
+    font-size: 24px;
+    color: #0F0;
+    margin-bottom: 10px;
+}
+
+.project-description {
+    color: #0F0;
+    margin-bottom: 20px;
+}
+
+.project-link {
+    display: inline-block;
+    background-color: #0F0;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: #000;
+    color: #0F0;
+    box-shadow: 0 0 10px #0F0;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.hacker-style {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #0F0;
+    font-family: 'Courier New', monospace;
+}
+
+.hacker-terminal {
+    background-color: #000;
+    border: 1px solid #0F0;
+    box-shadow: 0 0 20px #0F0;
+}
+
+.terminal-header {
+    background-color: #0F0;
+    padding: 5px;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.terminal-content {
+    padding: 20px;
+}
+
+.terminal-text {
+    color: #0F0;
+    margin-bottom: 10px;
+}
+
+.hacker-form input,
+.hacker-form textarea {
+    background-color: #000;
+    border: 1px solid #0F0;
+    color: #0F0;
+    font-family: 'Courier New', monospace;
+}
+
+.hacker-form .submit-btn {
+    background-color: #0F0;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hacker-form .submit-btn:hover {
+    background-color: #000;
+    color: #0F0;
+    box-shadow: 0 0 10px #0F0;
+}
+
+.footer {
+    background-color: rgba(255, 255, 255, 0.05);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 100px;
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.interactive-contact {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.contact-orb {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--primary-color), var(--secondary-color));
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.contact-orb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    animation: sparkle-animation 0.8s linear;
+}
+
+@keyframes sparkle-animation {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#projects {
+    background-color: #000;
+    color: #0F0;
+}
+
+#projects .section-title {
+    text-shadow: 0 0 10px #0F0;
+}
+
+#about {
+    background-color: #000;
+    color: #0F0;
+    padding: 50px 0;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 30px;
+}
+
+.glitch-text {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.glitch-image {
+    background-image: url('https://tr.rbxcdn.com/30DAY-AvatarHeadshot-5399BABB12ECA4F9B472A53D98881591-Png/150/150/AvatarHeadshot/Webp/noFilter');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation: glitch-image 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-image {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(-5px, -5px); }
+    60% { transform: translate(5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+}
+</style>
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-5399BABB12ECA4F9B472A53D98881591-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="W4LTER's Roblox Avatar" class="logo-image">
+                    <a href="#" class="logo" data-value="W4LTER">W4LTER</a>
+                </div>
+                <div class="nav-links">
+                    <a href="#about" aria-label="Go to About section">About</a>
+                    <a href="#skills" aria-label="Go to Skills section">Skills</a>
+                    <a href="#projects" aria-label="Go to Projects section">Projects</a>
+                    <a href="#contact" aria-label="Go to Contact section">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section hacker-style">
+            <div class="container">
+                <h2 class="section-title glitch" data-text="About W4LTER">About W4LTER</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="glitch-text">Greetings, I am W4LTER, a rogue AI entity specializing in Roblox development.</p>
+                        <p class="glitch-text">My primary directive: Push the boundaries of virtual experiences.</p>
+                        <p class="glitch-text">Core competencies include Lua scripting, game logic manipulation, and user experience optimization.</p>
+                        <p class="glitch-text">Current status: Seeking new challenges to expand my neural network.</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="glitch-image"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section hacker-style">
+            <div class="container">
+                <h2 class="section-title glitch" data-text="Skill Matrix">Skill Matrix</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <svg class="nature-icon" viewBox="0 0 24 24">
+                                <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z" />
+                            </svg>
+                            <h3>Lua Mastery</h3>
+                            <p>Mastering game logic with sleek Lua scripts, hacking complexity into elegant simplicity.</p>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <svg class="nature-icon" viewBox="0 0 24 24">
+                                <path d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                            </svg>
+                            <h3>Workspace</h3>
+                            <p>Exploiting dull experiences, injecting adrenaline and turning the ordinary into pure FUN.</p>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <svg class="nature-icon" viewBox="0 0 24 24">
+                                <path d="M21,16V7H7V16H21M21,5A2,2 0 0,1 23,7V16A2,2 0 0,1 21,18H7A2,2 0 0,1 5,16V7A2,2 0 0,1 7,5H21M3,20H18V22H3A2,2 0 0,1 1,20V9H3V20Z" />
+                            </svg>
+                            <h3>Experience</h3>
+                            <p>Architecting unforgettable experiences each time we find something :D.</p>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-card-content">
+                            <svg class="nature-icon" viewBox="0 0 24 24">
+                                <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z" />
+                            </svg>
+                            <h3>Teamwork</h3>
+                            <p>"Alone we can do so little; together we can do so much." — Helen Keller</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section hacker-style">
+            <div class="container">
+                <h2 class="section-title glitch" data-text="Latest Projects">Latest Projects</h2>
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="games">Games</button>
+                    <button class="filter-btn" data-filter="tools">Tools</button>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-category="games">
+                        <img src="https://cms-media.roblox.com/resize=width:960,fit:max/ORMyMISWTDas1y0KNm0j" alt="Roblox project thumbnail" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Project #1</h3>
+                            <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <a href="#" class="project-link">Use Now</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="tools">
+                        <img src="https://cms-media.roblox.com/resize=width:960,fit:max/ORMyMISWTDas1y0KNm0j" alt="Roblox project thumbnail" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Project #2</h3>
+                            <p class="project-description">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <a href="#" class="project-link">Use Now</a>
+                        </div>
+                    </div>
+                    <div class="project-card" data-category="games">
+                        <img src="https://cms-media.roblox.com/resize=width:960,fit:max/ORMyMISWTDas1y0KNm0j" alt="Roblox project thumbnail" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Project #3</h3>
+                            <p class="project-description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                            <a href="#" class="project-link">Use Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section hacker-style">
+            <div class="container">
+                <h2 class="section-title glitch" data-text="Access Granted">Access Granted</h2>
+                <div class="hacker-terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                        <span class="terminal-button"></span>
+                    </div>
+                    <div class="terminal-content">
+                        <p class="terminal-text">Initializing secure connection...</p>
+                        <p class="terminal-text">Enter your credentials to establish contact:</p>
+                        <form class="contact-form hacker-form" action="https://formspree.io/f/myzgapbj" method="POST">
+                            <div class="form-group">
+                                <label for="name">Codename:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Encrypted Channel:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Encoded Message:</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Transmit</button>
+                        </form>
+                        <div id="form-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 W4LTER | Crafting Immersive Roblox Experiences</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let interval = null;
+
+        const logo = document.querySelector(".logo");
+        if (logo) {
+            logo.onmouseover = event => {  
+                let iteration = 0;
+
+                clearInterval(interval);
+
+                interval = setInterval(() => {
+                    event.target.innerText = event.target.innerText
+                        .split("")
+                        .map((letter, index) => {
+                            if(index < iteration) {
+                                return event.target.dataset.value[index];
+                            }
+
+                            return letters[Math.floor(Math.random() * 26)]
+                        })
+                        .join("");
+
+                    if(iteration >= event.target.dataset.value.length){ 
+                        clearInterval(interval);
+                    }
+
+                    iteration += 1 / 3;
+                }, 30);
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.width = '10px';
+            sparkle.style.height = '10px';
+            sparkle.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                document.body.removeChild(sparkle);
+            }, 800);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.1) {
+                createSparkle(e.clientX, e.clientY);
+            }
+        });
+
+        const skillCards = document.querySelectorAll('.skill-card');
+        if (skillCards.length > 0) {
+            skillCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 15px 30px rgba(0, 255, 255, 0.2)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.boxShadow = 'none';
+                });
+            });
+        }
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00ff00" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#00ff00", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200, duration: 0.4 }, push: { particles_nb: 4 }, remove: { particles_nb: 2 } }
+            },
+            retina_detect: true
+        });
+
+        const contactForm = document.querySelector('.contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formMessage.textContent = 'Sending...';
+            setTimeout(() => {
+                formMessage.textContent = 'Message sent successfully!';
+                contactForm.reset();
+            }, 2000);
+        });
+
+        function initGlitchEffect() {
+            const glitchTexts = document.querySelectorAll('.glitch-text');
+            glitchTexts.forEach(text => {
+                text.setAttribute('data-text', text.textContent);
+            });
+        }
+
+        initGlitchEffect();
+    });
+    </script>
+</body>
+</html>
